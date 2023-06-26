@@ -1,0 +1,1287 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "SWAPI - Star Wars API",
+		"description": "API publique pour accéder aux données de l'univers Star Wars",
+		"version": "1.0"
+	},
+	"host": "localhost:3000",
+	"basePath": "/swapi",
+	"schemes": [
+		"http"
+	],
+	"tags": [
+		{
+		  	"name": "Films",
+		  	"description": "Tous les films de Star Wars"
+		},
+		{
+			"name": "Peoples",
+			"description": "Tous les peoples de Star Wars"
+		},
+		{
+			"name": "Planets",
+			"description": "Toutes les planetes de Star Wars"
+		},
+		{
+			"name": "Species",
+			"description": "Toutes les especes de Star Wars"
+		},
+		{
+			"name": "Starships",
+			"description": "Tous les vaisseaux de Star Wars"
+		},
+		{
+			"name": "Vehicles",
+			"description": "Tous les véhicules de Star Wars"
+		}
+	],
+	"paths": {
+		"/films": {
+			"get": {
+				"tags": [
+					"Films"
+				],
+				"summary": "Récupérer tous les films",
+				"description": "Retourne la liste de tous les films de Star Wars",
+				"responses": {
+					"200": {
+						"description": "Succès. La liste des films est retournée.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Film"
+							}
+						}
+					},
+					"404": {
+						"description": "Film non trouvé. L'ID du film spécifié n'existe pas."
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Films"
+				],
+				"summary": "Créer un nouveau film",
+				"description": "Crée un nouveau film dans la base de données",
+				"parameters": [
+					{
+						"name": "film",
+						"in": "body",
+						"description": "Données du film à créer",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Film"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Succès. Le film a été créé avec succès.",
+						"schema": {
+							"$ref": "#/definitions/Film"
+						}
+					},
+					"404": {
+						"description": "Film non trouvé. L'ID du film spécifié n'existe pas."
+					}
+				}
+			}
+		},
+		"/films/{id}": {
+			"get": {
+				"tags": [
+					"Films"
+				],
+				"summary": "Récupérer un film par ID",
+				"description": "Retourne les détails d'un film spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID du film à récupérer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. Les détails du film sont retournés.",
+						"schema": {
+							"$ref": "#/definitions/Film"
+						}
+					},
+					"404": {
+						"description": "Film non trouvé. L'ID du film spécifié n'existe pas."
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"Films"
+				],
+				"summary": "Mettre à jour un film par ID",
+				"description": "Met à jour les informations d'un film spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID du film à mettre à jour",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "film",
+						"in": "body",
+						"description": "Données du film à mettre à jour",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Film"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. Le film a été mis à jour avec succès.",
+						"schema": {
+							"$ref": "#/definitions/Film"
+						}
+					},
+					"404": {
+						"description": "Film non trouvé. L'ID du film spécifié n'existe pas."
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Films"
+				],
+				"summary": "Supprimer un film par ID",
+				"description": "Supprime un film spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID du film à supprimer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Succès. Le film a été supprimé avec succès."
+					},
+					"404": {
+						"description": "Film non trouvé. L'ID du film spécifié n'existe pas."
+					}
+				}
+			}
+		},
+		"/people": {
+			"get": {
+				"tags": [
+					"Peoples"
+				],
+				"summary": "Récupérer tous les personnages",
+				"description": "Retourne la liste de tous les personnages de Star Wars",
+				"responses": {
+					"200": {
+					"description": "Succès. La liste des personnages est retournée.",
+					"schema": {
+						"type": "array",
+						"items": {
+						"$ref": "#/definitions/People"
+						}
+					}
+				}
+			}
+			},
+			"post": {
+				"tags": [
+					"Peoples"
+				],
+				"summary": "Créer un nouveau personnage",
+				"description": "Crée un nouveau personnage dans la base de données",
+				"parameters": [
+					{
+						"name": "people",
+						"in": "body",
+						"description": "Données du personnage à créer",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/People"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Succès. Le personnage a été créé avec succès.",
+						"schema": {
+							"$ref": "#/definitions/People"
+						}
+					}
+				}
+			}
+		},
+		"/people/{id}": {
+			"get": {
+				"tags": [
+					"Peoples"
+				],
+				"summary": "Récupérer un personnage par ID",
+				"description": "Retourne les détails d'un personnage spécifique en fonction de son ID",
+				"parameters": [{
+					"name": "id",
+					"in": "path",
+					"description": "ID du personnage à récupérer",
+					"required": true,
+					"type": "string"
+				}],
+				"responses": {
+					"200": {
+						"description": "Succès. Les détails du personnage sont retournés.",
+						"schema": {
+							"$ref": "#/definitions/People"
+						}
+					},
+					"404": {
+						"description": "Personnage non trouvé. L'ID du personnage spécifié n'existe pas."
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"Peoples"
+				],
+				"summary": "Mettre à jour un personnage par ID",
+				"description": "Met à jour les informations d'un personnage spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID du personnage à mettre à jour",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "people",
+						"in": "body",
+						"description": "Données du personnage à mettre à jour",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/People"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. Le personnage a été mis à jour avec succès.",
+						"schema": {
+							"$ref": "#/definitions/People"
+						}
+					},
+					"404": {
+						"description": "Personnage non trouvé. L'ID du personnage spécifié n'existe pas."
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Peoples"
+				],
+				"summary": "Supprimer un personnage par ID",
+				"description": "Supprime un personnage spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID du personnage à supprimer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Succès. Le personnage a été supprimé avec succès."
+					},
+					"404": {
+						"description": "Personnage non trouvé. L'ID du personnage spécifié n'existe pas."
+					}
+				}
+			}
+		},
+		"/planets": {
+			"get": {
+				"tags": [
+					"Planets"
+				],
+				"summary": "Récupérer toutes les planètes",
+				"description": "Retourne la liste de toutes les planètes de Star Wars",
+				"responses": {
+					"200": {
+						"description": "Succès. La liste des planètes est retournée.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Planet"
+							}
+						}
+					},
+					"404": {
+						"description": "Planète non trouvée. L'ID de la planète spécifiée n'existe pas."
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Planets"
+				],
+				"summary": "Créer une nouvelle planète",
+				"description": "Crée une nouvelle planète dans la base de données",
+				"parameters": [
+					{
+						"name": "planet",
+						"in": "body",
+						"description": "Données de la planète à créer",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Planet"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Succès. La planète a été créée avec succès.",
+						"schema": {
+							"$ref": "#/definitions/Planet"
+						}
+					},
+					"404": {
+						"description": "Planète non trouvée. L'ID de la planète spécifiée n'existe pas."
+					}
+				}
+			}
+		},
+		"/planets/{id}": {
+			"get": {
+				"tags": [
+					"Planets"
+				],
+				"summary": "Récupérer une planète par ID",
+				"description": "Retourne les détails d'une planète spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID de la planète à récupérer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. Les détails de la planète sont retournés.",
+						"schema": {
+							"$ref": "#/definitions/Planet"
+						}
+					},
+					"404": {
+						"description": "Planète non trouvée. L'ID de la planète spécifiée n'existe pas."
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"Planets"
+				],
+				"summary": "Mettre à jour une planète par ID",
+				"description": "Met à jour les informations d'une planète spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID de la planète à mettre à jour",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "planet",
+						"in": "body",
+						"description": "Données de la planète à mettre à jour",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Planet"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. La planète a été mise à jour avec succès.",
+						"schema": {
+							"$ref": "#/definitions/Planet"
+						}
+					},
+					"404": {
+						"description": "Planète non trouvée. L'ID de la planète spécifiée n'existe pas."
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Planets"
+				],
+				"summary": "Supprimer une planète par ID",
+				"description": "Supprime une planète spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID de la planète à supprimer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Succès. La planète a été supprimée avec succès."
+					},
+					"404": {
+						"description": "Planète non trouvée. L'ID de la planète spécifiée n'existe pas."
+					}
+				}
+			}
+		},
+		"/species": {
+			"get": {
+				"tags": [
+					"Species"
+				],
+				"summary": "Récupérer toutes les espèces",
+				"description": "Retourne la liste de toutes les espèces de Star Wars",
+				"responses": {
+					"200": {
+						"description": "Succès. La liste des espèces est retournée.",
+						"schema": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/Specie"
+							}
+						}
+					},
+					"404": {
+						"description": "Espèces non trouvées. Aucune espèce n'a été trouvée dans la base de données."
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Species"
+				],
+				"summary": "Créer une nouvelle espèce",
+				"description": "Crée une nouvelle espèce dans la base de données",
+				"parameters": [
+					{
+						"name": "specie",
+						"in": "body",
+						"description": "Données de l'espèce à créer",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Specie"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Succès. L'espèce a été créée avec succès.",
+						"schema": {
+							"$ref": "#/definitions/Specie"
+						}
+					},
+					"400": {
+						"description": "Requête invalide. Les données de l'espèce sont incorrectes ou manquantes."
+					}
+				}
+			}
+		},
+		"/species/{id}": {
+			"get": {
+				"tags": [
+					"Species"
+				],
+				"summary": "Récupérer une espèce par ID",
+				"description": "Retourne les détails d'une espèce spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID de l'espèce à récupérer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. Les détails de l'espèce sont retournés.",
+						"schema": {
+							"$ref": "#/definitions/Specie"
+						}
+					},
+					"404": {
+						"description": "Espèce non trouvée. L'ID de l'espèce spécifié n'existe pas."
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"Species"
+				],
+				"summary": "Mettre à jour une espèce par ID",
+				"description": "Met à jour les informations d'une espèce spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID de l'espèce à mettre à jour",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"name": "specie",
+						"in": "body",
+						"description": "Données de l'espèce à mettre à jour",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Specie"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Succès. L'espèce a été mise à jour avec succès.",
+						"schema": {
+							"$ref": "#/definitions/Specie"
+						}
+					},
+					"404": {
+						"description": "Espèce non trouvée. L'ID de l'espèce spécifié n'existe pas."
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Species"
+				],
+				"summary": "Supprimer une espèce par ID",
+				"description": "Supprime une espèce spécifique en fonction de son ID",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"description": "ID de l'espèce à supprimer",
+						"required": true,
+						"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Succès. L'espèce a été supprimée avec succès."
+					},
+					"404": {
+						"description": "Espèce non trouvée. L'ID de l'espèce spécifié n'existe pas."
+					}
+				}
+			}
+		},
+		"/starships": {
+			"get": {
+			  "tags": [
+				"Starships"
+			  ],
+			  "summary": "Récupérer toutes les navettes spatiales",
+			  "description": "Retourne la liste de toutes les navettes spatiales de Star Wars",
+			  "responses": {
+				"200": {
+				  "description": "Succès. La liste des navettes spatiales est retournée.",
+				  "schema": {
+					"type": "array",
+					"items": {
+					  "$ref": "#/definitions/Starship"
+					}
+				  }
+				},
+				"404": {
+				  "description": "Navettes spatiales non trouvées. Aucune navette spatiale n'a été trouvée dans la base de données."
+				}
+			  }
+			},
+			"post": {
+			  "tags": [
+				"Starships"
+			  ],
+			  "summary": "Créer une nouvelle navette spatiale",
+			  "description": "Crée une nouvelle navette spatiale dans la base de données",
+			  "parameters": [
+				{
+				  "name": "starship",
+				  "in": "body",
+				  "description": "Données de la navette spatiale à créer",
+				  "required": true,
+				  "schema": {
+					"$ref": "#/definitions/Starship"
+				  }
+				}
+			  ],
+			  "responses": {
+				"201": {
+				  "description": "Succès. La navette spatiale a été créée avec succès.",
+				  "schema": {
+					"$ref": "#/definitions/Starship"
+				  }
+				},
+				"400": {
+				  "description": "Requête invalide. Les données de la navette spatiale fournies sont invalides ou manquantes."
+				}
+			  }
+			}
+		  },
+		  "/starships/{id}": {
+			"get": {
+			  "tags": [
+				"Starships"
+			  ],
+			  "summary": "Récupérer une navette spatiale par ID",
+			  "description": "Retourne les détails d'une navette spatiale spécifique en fonction de son ID",
+			  "parameters": [
+				{
+				  "name": "id",
+				  "in": "path",
+				  "description": "ID de la navette spatiale à récupérer",
+				  "required": true,
+				  "type": "string"
+				}
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "Succès. Les détails de la navette spatiale sont retournés.",
+				  "schema": {
+					"$ref": "#/definitions/Starship"
+				  }
+				},
+				"404": {
+				  "description": "Navette spatiale non trouvée. L'ID de la navette spatiale spécifié n'existe pas."
+				}
+			  }
+			},
+			"patch": {
+			  "tags": [
+				"Starships"
+			  ],
+			  "summary": "Mettre à jour une navette spatiale par ID",
+			  "description": "Met à jour les informations d'une navette spatiale spécifique en fonction de son ID",
+			  "parameters": [
+				{
+				  "name": "id",
+				  "in": "path",
+				  "description": "ID de la navette spatiale à mettre à jour",
+				  "required": true,
+				  "type": "string"
+				},
+				{
+				  "name": "starship",
+				  "in": "body",
+				  "description": "Données de la navette spatiale à mettre à jour",
+				  "required": true,
+				  "schema": {
+					"$ref": "#/definitions/Starship"
+				  }
+				}
+			  ],
+			  "responses": {
+				"200": {
+				  "description": "Succès. La navette spatiale a été mise à jour avec succès.",
+				  "schema": {
+					"$ref": "#/definitions/Starship"
+				  }
+				},
+				"404": {
+				  "description": "Navette spatiale non trouvée. L'ID de la navette spatiale spécifié n'existe pas."
+				}
+			  }
+			},
+			"delete": {
+				"tags": [
+					"Starships"
+				],
+				"summary": "Supprimer une navette spatiale par ID",
+				"description": "Supprime une navette spatiale spécifique en fonction de son ID",
+				"parameters": [
+					{
+					"name": "id",
+					"in": "path",
+					"description": "ID de la navette spatiale à supprimer",
+					"required": true,
+					"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+					"description": "Succès. La navette spatiale a été supprimée avec succès."
+					},
+					"404": {
+					"description": "Navette spatiale non trouvée. L'ID de la navette spatiale spécifié n'existe pas."
+					}
+				}
+			}
+		},
+		"/vehicles": {
+			"get": {
+				"tags": [
+					"Vehicles"
+				],
+				"summary": "Récupérer tous les véhicules",
+				"description": "Retourne la liste de tous les véhicules de Star Wars",
+				"responses": {
+					"200": {
+					"description": "Succès. La liste des véhicules est retournée.",
+					"schema": {
+						"type": "array",
+						"items": {
+						"$ref": "#/definitions/Vehicle"
+						}
+					}
+					},
+					"404": {
+					"description": "Véhicule non trouvé. L'ID du véhicule spécifié n'existe pas."
+					}
+				}
+			},
+			"post": {
+				"tags": [
+					"Vehicles"
+				],
+				"summary": "Créer un nouveau véhicule",
+				"description": "Crée un nouveau véhicule dans la base de données",
+				"parameters": [
+					{
+					"name": "vehicle",
+					"in": "body",
+					"description": "Données du véhicule à créer",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/Vehicle"
+					}
+					}
+				],
+				"responses": {
+					"201": {
+					"description": "Succès. Le véhicule a été créé avec succès.",
+					"schema": {
+						"$ref": "#/definitions/Vehicle"
+					}
+					},
+					"404": {
+					"description": "Véhicule non trouvé. L'ID du véhicule spécifié n'existe pas."
+					}
+				}
+				}
+		  },
+		  "/vehicles/{id}": {
+			"get": {
+				"tags": [
+					"Vehicles"
+				],
+				"summary": "Récupérer un véhicule par ID",
+				"description": "Retourne les détails d'un véhicule spécifique en fonction de son ID",
+				"parameters": [
+					{
+					"name": "id",
+					"in": "path",
+					"description": "ID du véhicule à récupérer",
+					"required": true,
+					"type": "string"
+					}
+				],
+				"responses": {
+					"200": {
+					"description": "Succès. Les détails du véhicule sont retournés.",
+					"schema": {
+						"$ref": "#/definitions/Vehicle"
+					}
+					},
+					"404": {
+						"description": "Véhicule non trouvé. L'ID du véhicule spécifié n'existe pas."
+					}
+				}
+			},
+			"patch": {
+				"tags": [
+					"Vehicles"
+				],
+				"summary": "Mettre à jour un véhicule par ID",
+				"description": "Met à jour les informations d'un véhicule spécifique en fonction de son ID",
+				"parameters": [
+					{
+					"name": "id",
+					"in": "path",
+					"description": "ID du véhicule à mettre à jour",
+					"required": true,
+					"type": "string"
+					},
+					{
+					"name": "vehicle",
+					"in": "body",
+					"description": "Données du véhicule à mettre à jour",
+					"required": true,
+					"schema": {
+						"$ref": "#/definitions/Vehicle"
+					}
+					}
+				],
+				"responses": {
+					"200": {
+					"description": "Succès. Le véhicule a été mis à jour avec succès.",
+					"schema": {
+						"$ref": "#/definitions/Vehicle"
+					}
+					},
+					"404": {
+					"description": "Véhicule non trouvé. L'ID du véhicule spécifié n'existe pas."
+					}
+				}
+			},
+			"delete": {
+				"tags": [
+					"Vehicles"
+				],
+				"summary": "Supprimer un véhicule par ID",
+				"description": "Supprime un véhicule spécifique en fonction de son ID",
+				"parameters": [
+					{
+					"name": "id",
+					"in": "path",
+					"description": "ID du véhicule à supprimer",
+					"required": true,
+					"type": "string"
+					}
+				],
+				"responses": {
+					"204": {
+					"description": "Succès. Le véhicule a été supprimé avec succès."
+					},
+					"404": {
+					"description": "Véhicule non trouvé. L'ID du véhicule spécifié n'existe pas."
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Film": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"description": "ID unique du film"
+				},
+				"starships": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					},
+					"description": "Liste des ID des vaisseaux spatiaux présents dans le film"
+				},
+				"edited": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de la dernière édition du film"
+				},
+				"vehicles": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+						  	"id": {
+							  	"type": "integer",
+							  	"description": "L'ID du véhicule."
+						 	},
+						  	"url": {
+							  	"type": "string",
+							  	"description": "L'URL du véhicule."
+						  	}
+						}
+				  	},
+					"description": "Liste des ID des véhicules présents dans le film"
+				},
+				"planets": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+						  "id": {
+							  	"type": "integer",
+							  	"description": "L'ID de la planéte."
+						 	},
+						  	"url": {
+							  	"type": "string",
+							  	"description": "L'URL de la planéte."
+						  	}
+						}
+				  	},
+					"description": "Liste des ID des planètes présentes dans le film"
+				},
+				"characters": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+						  "id": {
+							  	"type": "integer",
+							  	"description": "L'ID de la personne."
+						 	},
+						  	"url": {
+							  	"type": "string",
+							  	"description": "L'URL de la personne."
+						  	}
+						}
+				  	},
+					"description": "Liste des ID des personnages présents dans le film"
+				},
+				"species": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+						  "id": {
+							  	"type": "integer",
+							  	"description": "L'ID de l'espèce."
+						 	},
+						  	"url": {
+							  	"type": "string",
+							  	"description": "L'URL de l'espèce."
+						  	}
+						}
+				  	},
+					"description": "Liste des ID des espèces présentes dans le film"
+				},
+				"producer": {
+					"type": "string",
+					"description": "Producteur du film"
+				},
+				"title": {
+					"type": "string",
+					"description": "Titre du film"
+				},
+				"episode_id": {
+					"type": "integer",
+					"description": "ID de l'épisode du film"
+				},
+				"opening_crawl": {
+					"type": "string",
+					"description": "Introduction textuelle du film"
+				},
+				"director": {
+					"type": "string",
+					"description": "Réalisateur du film"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de création du film"
+				},
+				"release_date": {
+					"type": "string",
+					"description": "Date de sortie du film"
+				}
+			}
+		},
+		"People": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"format": "ObjectId",
+					"description": "ID unique généré automatiquement pour la personne"
+				},
+				"edited": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de la dernière édition de la personne"
+				},
+				"name": {
+					"type": "string",
+					"description": "Nom de la personne"
+				},
+				"birth_year": {
+					"type": "string",
+					"description": "Année de naissance de la personne"
+				},
+				"eye_color": {
+					"type": "string",
+					"description": "Couleur des yeux de la personne"
+				},
+				"gender": {
+					"type": "string",
+					"description": "Genre de la personne"
+				},
+				"hair_color": {
+					"type": "string",
+					"description": "Couleur des cheveux de la personne"
+				},
+				"height": {
+					"type": "integer",
+					"description": "Taille en centimètres de la personne"
+				},
+				"mass": {
+					"type": "integer",
+					"description": "Masse en kilogrammes de la personne"
+				},
+				"skin_color": {
+					"type": "string",
+					"description": "Couleur de peau de la personne"
+				},
+				"homeworld": {
+					"type": "integer",
+					"description": "ID de la planète d'origine de la personne"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de création de la personne"
+				}
+			}
+		},
+		"Planet": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"format": "ObjectId",
+					"description": "ID unique généré automatiquement pour la planète"
+				},
+				"name": {
+					"type": "string",
+					"description": "Nom de la planète"
+				},
+				"rotation_period": {
+					"type": "string",
+					"description": "Période de rotation de la planète"
+				},
+				"edited": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de la dernière édition de la planète"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de création de la planète"
+				},
+				"orbital_period": {
+					"type": "string",
+					"description": "Période orbitale de la planète"
+				},
+				"diameter": {
+					"type": "string",
+					"description": "Diamètre de la planète"
+				},
+				"climate": {
+					"type": "string",
+					"description": "Climat de la planète"
+				},
+				"gravity": {
+					"type": "string",
+					"description": "Gravité de la planète"
+				},
+				"terrain": {
+					"type": "string",
+					"description": "Type de terrain de la planète"
+				},
+				"surface_water": {
+					"type": "string",
+					"description": "Pourcentage de surface d'eau de la planète"
+				},
+				"population": {
+					"type": "string",
+					"description": "Population de la planète"
+				}
+			}
+		},
+		"Specie": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"format": "objectId",
+					"description": "ID unique de l'espèce (généré automatiquement)",
+					"readOnly": true
+				},
+				"name": {
+					"type": "string",
+					"description": "Nom de l'espèce"
+				},
+				"classification": {
+					"type": "string",
+					"description": "Classification de l'espèce"
+				},
+				"designation": {
+					"type": "string",
+					"description": "Désignation de l'espèce"
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de création de l'espèce",
+					"readOnly": true
+				},
+				"edited": {
+					"type": "string",
+					"format": "date-time",
+					"description": "Date de dernière modification de l'espèce",
+					"readOnly": true
+				},
+				"average_height": {
+					"type": "string",
+					"description": "Taille moyenne de l'espèce"
+				},
+				"skin_colors": {
+					"type": "string",
+					"description": "Couleurs de peau de l'espèce"
+				},
+				"hair_colors": {
+					"type": "string",
+					"description": "Couleurs de cheveux de l'espèce"
+				},
+				"eye_colors": {
+					"type": "string",
+					"description": "Couleurs des yeux de l'espèce"
+				},
+				"average_lifespan": {
+					"type": "string",
+					"description": "Durée de vie moyenne de l'espèce"
+				},
+				"homeworld": {
+					"type": "string",
+					"description": "Planète d'origine de l'espèce"
+				},
+				"language": {
+					"type": "string",
+					"description": "Langue parlée par l'espèce"
+				},
+				"people": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+						  	"id": {
+							  "type": "integer",
+							  "description": "L'ID de la personne."
+						  	},
+						  	"url": {
+							  "type": "string",
+							  "description": "L'URL de la personne."
+						  	}
+						}
+				  	},
+					"description": "Liste des individus appartenant à cette espèce"
+				}
+			}
+		},
+		"Starship": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"description": "L'ID unique de la navette spatiale."
+				},
+				"model": {
+					"type": "string",
+					"description": "Le modèle de la navette spatiale."
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time",
+					"description": "La date de création de la navette spatiale."
+				},
+				"edited": {
+					"type": "string",
+					"format": "date-time",
+					"description": "La date de dernière modification de la navette spatiale."
+				},
+				"hyperdrive_rating": {
+					"type": "string",
+					"description": "Le classement de l'hyperdrive de la navette spatiale."
+				},
+				"MGLT": {
+					"type": "string",
+					"description": "Le MGLT (Megalight per hour) de la navette spatiale."
+				},
+				"starship_class": {
+					"type": "string",
+					"description": "La classe de la navette spatiale."
+				},
+				"pilots": {
+					"type": "array",
+					"items": {
+					  	"type": "object",
+					  	"properties": {
+							"id": {
+								"type": "integer",
+								"description": "L'ID du pilote du véhicule."
+							},
+							"url": {
+								"type": "string",
+								"description": "L'URL du pilote du véhicule."
+							}
+					  	}
+					},
+					"description": "La liste des pilotes de la navette spatiale."
+				}
+			}
+		},
+		"Vehicle": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string",
+					"description": "L'ID unique du véhicule."
+				},
+				"model": {
+					"type": "string",
+					"description": "Le modèle du véhicule."
+				},
+				"created": {
+					"type": "string",
+					"format": "date-time",
+					"description": "La date de création du véhicule."
+				},
+				"edited": {
+					"type": "string",
+					"format": "date-time",
+					"description": "La date de dernière modification du véhicule."
+				},
+				"vehicle_class": {
+					"type": "string",
+					"description": "La classe du véhicule."
+				},
+				"pilots": {
+					"type": "array",
+					"items": {
+					  	"type": "object",
+					  	"properties": {
+							"id": {
+								"type": "integer",
+								"description": "L'ID du pilote du véhicule."
+							},
+							"url": {
+								"type": "string",
+								"description": "L'URL du pilote du véhicule."
+							}
+					  	}
+					},
+					"description": "La liste des pilotes du véhicule."
+				}
+			}
+		}
+	}
+}

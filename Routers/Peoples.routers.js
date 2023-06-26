@@ -1,21 +1,23 @@
 import Express from "express";
 
-//const app = Express();
 const router = Express.Router();
 
 import {
 	getPeoples,
-	getPeople
+	getPeople,
+	createPeople,
+	updatePeople,
+	deletePeople
 } from "../Controllers/Peoples.controller.js";
 
 router.get('/', getPeoples)
 
 router.get('/:peopleID', getPeople)
 
-/*router.post('/', createPeople) 
+router.post('/', createPeople) 
 
-router.put('/:peopleID', updatePeople) 
+router.patch('/:peopleID', updatePeople) 
 
-router.delete('/:peopleID', deletePeople)*/
+router.delete('/:peopleID', deletePeople)
 
 export { router as peoples_router }

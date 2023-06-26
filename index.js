@@ -6,13 +6,14 @@ import { species_router } from "./Routers/Species.router.js";
 import { starships_router } from "./Routers/Starships.routers.js";
 import { vehicles_router } from "./Routers/Vehicles.routers.js";
 import mongoose from "mongoose";
+import cors from "cors";
 
 
 main().catch(err => console.log(err));
 
 async function main() {
 	const app = Express();
-
+	app.use(cors());
 	app.listen(3000, () => {
 			console.log('server is listening on port 3000')
 	});

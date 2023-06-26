@@ -5,8 +5,10 @@ const router = Express.Router();
 import {
 	getFilms,
 	getFilm,
-	createFilm
-} from "../controllers/Films.controller.js";
+	createFilm,
+	updateFilm,
+	deleteFilm
+} from "../Controllers/Films.controller.js";
 
 router.get('/', getFilms)
 
@@ -14,8 +16,8 @@ router.get('/:filmID', getFilm)
 
 router.post('/', createFilm) 
 
-/*router.put('/:filmID', updateFilm) 
+router.patch('/:filmID', updateFilm) 
 
-router.delete('/:filmID', deleteFilm)*/
+router.delete('/:filmID', deleteFilm)
 
 export { router as films_router }

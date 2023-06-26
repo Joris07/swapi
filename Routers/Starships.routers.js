@@ -5,17 +5,20 @@ const router = Express.Router();
 
 import {
 	getStarships,
-	getStarship
+	getStarship,
+	createStarship,
+	updateStarship,
+	deleteStarship
 } from "../controllers/Starships.controller.js";
 
 router.get('/', getStarships)
 
 router.get('/:starshipID', getStarship)
 
-/*router.post('/', createStarship) 
+router.post('/', createStarship) 
 
-router.put('/:starshipID', updateStarship) 
+router.patch('/:starshipID', updateStarship) 
 
-router.delete('/:starshipID', deleteStarship)*/
+router.delete('/:starshipID', deleteStarship)
 
 export { router as starships_router }

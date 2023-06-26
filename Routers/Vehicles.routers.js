@@ -5,17 +5,20 @@ const router = Express.Router();
 
 import {
 	getVehicles,
-	getVehicle
+	getVehicle,
+	createVehicle,
+	updateVehicle,
+	deleteVehicle
 } from "../controllers/Vehicles.controller.js";
 
 router.get('/', getVehicles)
 
 router.get('/:vehicleID', getVehicle)
 
-/*router.post('/', createVehicle) 
+router.post('/', createVehicle) 
 
-router.put('/:vehicleID', updateVehicle) 
+router.patch('/:vehicleID', updateVehicle) 
 
-router.delete('/:vehicleID', deleteVehicle)*/
+router.delete('/:vehicleID', deleteVehicle)
 
 export { router as vehicles_router }

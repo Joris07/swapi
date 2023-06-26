@@ -4,17 +4,20 @@ const router = Express.Router();
 
 import {
 	getSpecies,
-	getSpecie
-} from "../controllers/Species.controller.js";
+	getSpecie,
+	createSpecie,
+	updateSpecie,
+	deleteSpecie
+} from "../Controllers/Species.controller.js";
 
 router.get('/', getSpecies)
 
 router.get('/:specieID', getSpecie)
 
-/*router.post('/', createFilm) 
+router.post('/', createSpecie) 
 
-router.put('/:filmID', updateFilm) 
+router.patch('/:specieID', updateSpecie) 
 
-router.delete('/:filmID', deleteFilm)*/
+router.delete('/:specieID', deleteSpecie)
 
 export { router as species_router }

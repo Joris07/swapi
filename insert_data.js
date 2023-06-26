@@ -7,7 +7,7 @@ const connexion = await client.connect();
 fs.readdir("data", async function (err, files) {
     const db = client.db("swapi");
     db.createCollection("films");
-    db.createCollection("people");
+    db.createCollection("peoples");
     db.createCollection("planets");
     db.createCollection("species");
     db.createCollection("starships");
