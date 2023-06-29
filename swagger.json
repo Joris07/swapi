@@ -6,11 +6,28 @@
 		"version": "1.0"
 	},
 	"host": "localhost:3000",
-	"basePath": "/swapi",
+	"basePath": "/",
 	"schemes": [
 		"http"
 	],
+	"securityDefinitions": {
+		"BearerAuth": {
+		  "type": "apiKey",
+		  "name": "Authorization",
+		  "in": "header",
+		  "description": "JWT token in the format 'Bearer {token}'"
+		}
+	},
+	"security": [
+		{
+		  "BearerAuth": []
+		}
+	],
 	"tags": [
+		{
+			"name": "Login",
+			"description": "Obtenir son jeton JWT"
+	  	},
 		{
 		  	"name": "Films",
 		  	"description": "Tous les films de Star Wars"
@@ -37,7 +54,38 @@
 		}
 	],
 	"paths": {
-		"/films": {
+		"/login": {
+			"post": {
+				"tags": [
+					"Login"
+				],
+				"summary": "Obtenir son JWT",
+				"description": "Obtenir son JWT",
+				"parameters": [
+					{
+						"name": "user",
+						"in": "body",
+						"description": "Données du user à trouver",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					}
+				],
+				"responses": {
+					"201": {
+						"description": "Succès. Le JWT à été trouvé.",
+						"schema": {
+							"$ref": "#/definitions/User"
+						}
+					},
+					"404": {
+						"description": "User non trouvé."
+					}
+				}
+			}
+		},
+		"/swapi/films": {
 			"get": {
 				"tags": [
 					"Films"
@@ -89,7 +137,7 @@
 				}
 			}
 		},
-		"/films/{id}": {
+		"/swapi/films/{id}": {
 			"get": {
 				"tags": [
 					"Films"
@@ -178,7 +226,7 @@
 				}
 			}
 		},
-		"/people": {
+		"/swapi/people": {
 			"get": {
 				"tags": [
 					"Peoples"
@@ -224,7 +272,7 @@
 				}
 			}
 		},
-		"/people/{id}": {
+		"/swapi/people/{id}": {
 			"get": {
 				"tags": [
 					"Peoples"
@@ -311,7 +359,7 @@
 				}
 			}
 		},
-		"/planets": {
+		"/swapi/planets": {
 			"get": {
 				"tags": [
 					"Planets"
@@ -363,7 +411,7 @@
 				}
 			}
 		},
-		"/planets/{id}": {
+		"/swapi/planets/{id}": {
 			"get": {
 				"tags": [
 					"Planets"
@@ -452,7 +500,7 @@
 				}
 			}
 		},
-		"/species": {
+		"/swapi/species": {
 			"get": {
 				"tags": [
 					"Species"
@@ -504,7 +552,7 @@
 				}
 			}
 		},
-		"/species/{id}": {
+		"/swapi/species/{id}": {
 			"get": {
 				"tags": [
 					"Species"
@@ -593,7 +641,7 @@
 				}
 			}
 		},
-		"/starships": {
+		"/swapi/starships": {
 			"get": {
 			  "tags": [
 				"Starships"
@@ -645,7 +693,7 @@
 			  }
 			}
 		  },
-		  "/starships/{id}": {
+		"/swapi/starships/{id}": {
 			"get": {
 			  "tags": [
 				"Starships"
@@ -734,7 +782,7 @@
 				}
 			}
 		},
-		"/vehicles": {
+		"/swapi/vehicles": {
 			"get": {
 				"tags": [
 					"Vehicles"
@@ -786,7 +834,7 @@
 				}
 				}
 		  },
-		  "/vehicles/{id}": {
+		  "/swapi/vehicles/{id}": {
 			"get": {
 				"tags": [
 					"Vehicles"
@@ -1280,6 +1328,19 @@
 					  	}
 					},
 					"description": "La liste des pilotes du véhicule."
+				}
+			}
+		},
+		"User": {
+			"type": "object",
+			"properties": {
+				"username": {
+					"type": "string",
+					"description": "Le username du user."
+				},
+				"password": {
+					"type": "string",
+					"description": "Le mot de passe du user."
 				}
 			}
 		}

@@ -12,6 +12,7 @@ fs.readdir("data", async function (err, files) {
     db.createCollection("species");
     db.createCollection("starships");
     db.createCollection("vehicles");
+    db.createCollection("users");
     for (let file of files) {
         let la_jsonData = [];
         fs.readFile('data/' + file, 'utf8', async (err, data) => {
@@ -27,6 +28,18 @@ fs.readdir("data", async function (err, files) {
             db.collection(file.split(".")[0]).insertMany(la_jsonData);
         });
     }
+    db.collection('users').insertMany(
+        [
+            {
+                username : "kevin",
+                password : "123456"
+            },
+            {
+                username : "joris",
+                password : "123456"
+            }
+        ]
+    );
 });
 
 

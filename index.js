@@ -5,9 +5,10 @@ import { planets_router } from "./Routers/planets.routers.js";
 import { species_router } from "./Routers/Species.router.js";
 import { starships_router } from "./Routers/Starships.routers.js";
 import { vehicles_router } from "./Routers/Vehicles.routers.js";
+import { login_router } from "./Routers/Login.routers.js";
+import { authenticateToken } from "./Utils/authenticateToken.js";
 import mongoose from "mongoose";
 import cors from "cors";
-
 
 main().catch(err => console.log(err));
 
@@ -23,10 +24,12 @@ async function main() {
 	.catch((err) => console.log(err));
 	
 	app.use(Express.json());
+	app.use('/swapi/', authenticateToken);
 	app.use('/swapi/peoples', peoples_router);
 	app.use('/swapi/films', films_router);
 	app.use('/swapi/planets', planets_router);
 	app.use('/swapi/species', species_router);
 	app.use('/swapi/starships', starships_router);
 	app.use('/swapi/vehicles', vehicles_router);
+	app.use('/login', login_router);
 }
