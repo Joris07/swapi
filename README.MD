@@ -1,6 +1,6 @@
 # Mise en place du projet
 
-1. En étant dans le dossier API, réaliser les commandes suivantes : 
+1. En étant à la racine, réaliser les commandes suivantes : 
    - `npm install`
    - `docker-compose up`
    - `node insert_data.js`
@@ -63,5 +63,5 @@ Au niveau 3, l'API SWAPI inclue des liens hypertexte dans les réponses, permett
 
 # Accés à la documentation Swagger
 
-A la racine de mon dossier API, le fichier swagger au format json et yaml, au choix.
+A la racine, le fichier swagger au format json et yaml, au choix.
 Bien penser à mettre Bearer devant le token lors de l'autorisation.
